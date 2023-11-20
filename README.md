@@ -22,7 +22,7 @@ Below are the steps to install and run the application:
 
 1. Clone the repository to your local machine:
     ```bash
-      git clone https://github.com/m43c/coordinate-area
+      git clone https://github.com/m43c/poke-game.git
     ```
 
 2. Navigate to the project directory:
