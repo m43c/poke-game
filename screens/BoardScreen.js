@@ -59,7 +59,7 @@ const BoardScreen = ({
 
   const getRandomWildPokemon = async () => {
     try {
-      const randomPokemonId = Math.floor(Math.random() * 20);
+      const randomPokemonId = Math.floor(Math.random() * (151 - 1 + 1)) + 1;
 
       const response = await fetch(
         `https://pokeapi.co/api/v2/pokemon/${randomPokemonId}`
