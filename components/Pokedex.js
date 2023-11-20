@@ -12,7 +12,9 @@ const Pokedex = () => {
   useEffect(() => {
     const fetchWildPokemonData = async () => {
       try {
-        const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+        const response = await fetch(
+          "https://pokeapi.co/api/v2/pokemon?limit=151&offset=0"
+        );
         const wildPokemonData = await response.json();
 
         const wildPokemon = await Promise.all(
@@ -53,7 +55,7 @@ const Pokedex = () => {
               <Text className="font-['proggy-clean'] font-semibold text-3xl text-gray-200">
                 {capitalizeWord(item.name)}
               </Text>
-              
+
               <Image
                 source={{ uri: item.image }}
                 className="w-[200px] h-[200px]"
