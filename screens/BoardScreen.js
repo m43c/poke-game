@@ -109,6 +109,7 @@ const BoardScreen = ({
       pokemonList.push(wildPokemon);
     } else {
       showNotification(`${wildPokemon.name} has escaped!`);
+      reloadWildPokemon();
     }
   };
 
