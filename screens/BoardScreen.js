@@ -1,4 +1,7 @@
+// Import React and necessary hooks for functional components
 import React, { useEffect, useState } from "react";
+
+// Import React Native components and elements
 import {
   Image,
   ImageBackground,
@@ -8,27 +11,33 @@ import {
   View,
 } from "react-native";
 
+// Import the list of owned Pokemon from another file
 import pokemonList from "../listOfMyPokemons";
 
+// BoardScreen component that receives navigation parameters
 const BoardScreen = ({
   route: {
     params: { myPokemon },
   },
 }) => {
+  // State variables to manage game state
   const [loading, setLoading] = useState(true);
   const [wildPokemon, setWildPokemon] = useState([]);
   const [wildPokemonWeaknesses, setWildPokemonWeaknesses] = useState([]);
   const [weaknessesOfMyPokemon, setWeaknessesOfMyPokemon] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Function to display Android Toast notifications
   const showNotification = (message) => {
     ToastAndroid.show(message, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
   };
 
+  // Function to get types of a Pokemon
   const getPokemonTypes = (pokemon) => {
     return pokemon.types ? pokemon.types.map((type) => type.type.name) : [];
   };
 
+  // Function to fetch weaknesses of a Pokemon from the PokeAPI
   const getPokemonWeaknesses = async (pokemon) => {
     try {
       const pokemonWeaknesses = [];
@@ -53,10 +62,12 @@ const BoardScreen = ({
       console.error(error);
       return [];
     } finally {
+      // Set loading to false when data fetching is complete
       setLoading(false);
     }
   };
 
+  // Function to get a random wild Pokemon
   const getRandomWildPokemon = async () => {
     try {
       const randomPokemonId = Math.floor(Math.random() * (151 - 1 + 1)) + 1;
@@ -72,14 +83,17 @@ const BoardScreen = ({
     } catch (error) {
       console.error(error);
     } finally {
+      // Set loading to false when data fetching is complete
       setLoading(false);
     }
   };
 
+  // Function to reload the wild Pokemon
   const reloadWildPokemon = async () => {
     await getRandomWildPokemon();
   };
 
+  // Function to attempt catching the wild Pokemon
   const catchPokemon = () => {
     let probabilityOfVictory = 0;
     const typesOfMyPokemon = getPokemonTypes(pokemonList[currentIndex]);
@@ -98,6 +112,7 @@ const BoardScreen = ({
     }
   };
 
+  // Function to change to the next owned Pokemon
   const changeToNextPokemon = async () => {
     const nextPokemonIndex = (currentIndex + 1) % pokemonList.length;
     const nextPokemon = pokemonList[nextPokemonIndex];
@@ -108,6 +123,7 @@ const BoardScreen = ({
     setWeaknessesOfMyPokemon(weaknessesOfNextPokemon);
   };
 
+  // Fetch random wild Pokemon and weaknesses of the player's Pokemon on component mount
   useEffect(() => {
     const loadRandomWildPokemon = async () => {
       await getRandomWildPokemon();
@@ -129,11 +145,14 @@ const BoardScreen = ({
   return (
     <View className="flex-1 items-center justify-center space-y-4 p-2 bg-red-500">
       {loading ? (
+        // Loading text
         <Text className="font-['proggy-clean'] font-semibold text-3xl text-gray-200">
           Loading...
         </Text>
       ) : (
+        // Display game content after loading
         <>
+          {/* Display wild Pokemon information */}
           <View className="w-full border p-2 bg-slate-200">
             <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
               Name: {wildPokemon.name}
@@ -148,11 +167,13 @@ const BoardScreen = ({
             </Text>
           </View>
 
+          {/* Display combat scenario with wild Pokemon */}
           <ImageBackground
             source={require("../assets/combat-scenario.png")}
             resizeMode="stretch"
             className="w-full h-[300px] relative"
           >
+            {/* Reload button for wild Pokemon */}
             <TouchableOpacity
               className="absolute top-9 right-[30px]"
               onPress={() => {
@@ -167,6 +188,7 @@ const BoardScreen = ({
               )}
             </TouchableOpacity>
 
+            {/* Button to change to the next owned Pokemon */}
             <TouchableOpacity
               className="absolute bottom-2 left-[60px]"
               onPress={() => {
@@ -185,6 +207,7 @@ const BoardScreen = ({
             </TouchableOpacity>
           </ImageBackground>
 
+          {/* Display player's Pokemon information */}
           <View className="w-full border p-2 bg-slate-200">
             <Text className="font-['proggy-clean'] font-semibold text-2xl">
               Name: {pokemonList[currentIndex].name}
@@ -199,6 +222,7 @@ const BoardScreen = ({
             </Text>
           </View>
 
+          {/* Display button to catch the wild Pokemon */}
           <TouchableOpacity className="w-full p-2 rounded bg-[#4e76a7]">
             <Text
               className="font-['proggy-clean'] font-semibold text-2xl text-center text-gray-200"
@@ -215,4 +239,5 @@ const BoardScreen = ({
   );
 };
 
+// Export the BoardScreen component
 export default BoardScreen;

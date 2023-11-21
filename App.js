@@ -1,21 +1,25 @@
+// Import necessary libraries and components for navigation and UI.
 import "react-native-gesture-handler";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { MaterialCommunityIcons, Entypo, AntDesign } from "@expo/vector-icons";
+
+// Import custom components.
 import MyStacks from "./components/MyStacks";
 import MyPokemons from "./components/MyPokemons";
 import Pokedex from "./components/Pokedex";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Entypo } from "@expo/vector-icons";
-import { AntDesign } from "@expo/vector-icons";
-
+// Create a bottom tab navigation component using createBottomTabNavigator.
 const Tab = createBottomTabNavigator();
 
+// Define the main application component.
 const App = () => {
   return (
+    // Main navigation container.
     <NavigationContainer>
+      {/* Configuration and definition of screens for the bottom tab navigation. */}
       <Tab.Navigator
         initialRouteName="Home"
         screenOptions={{
@@ -23,6 +27,7 @@ const App = () => {
           tabBarStyle: { backgroundColor: "#000000" },
         }}
       >
+        {/* First screen: MyStacks */}
         <Tab.Screen
           name="Home"
           component={MyStacks}
@@ -35,6 +40,7 @@ const App = () => {
           }}
         />
 
+        {/* Second screen: MyPokemons */}
         <Tab.Screen
           name="Pokemon"
           component={MyPokemons}
@@ -44,7 +50,8 @@ const App = () => {
             tabBarIcon: () => <Entypo name="trophy" size={24} color="white" />,
           }}
         />
-        
+
+        {/* Third screen: Pokedex */}
         <Tab.Screen
           name="Pokedex"
           component={Pokedex}
@@ -61,4 +68,5 @@ const App = () => {
   );
 };
 
+// Export the main component.
 export default App;
