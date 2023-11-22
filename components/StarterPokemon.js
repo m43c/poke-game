@@ -19,7 +19,6 @@ const StarterPokemon = ({ pokemon, updatePokemon }) => {
       pokemonList.push(pokemon);
     } else {
       showNotfication("Pikachu has escaped!");
-      updatePokemon(null);
     }
   };
 
