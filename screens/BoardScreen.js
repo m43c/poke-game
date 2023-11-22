@@ -100,19 +100,32 @@ const BoardScreen = ({
 
     let probabilityOfVictory = 0;
 
+    // Check type advantages against wild Pokémon's weaknesses
     typesOfMyCurrentPokemon.forEach((type) => {
       if (wildPokemonWeaknesses.includes(type)) {
         probabilityOfVictory += 50;
       }
     });
 
-    if (probabilityOfVictory >= 50) {
+    // Check if player's Pokémon has higher base experience than the wild Pokémon
+    if (myCurrentPokemon.base_experience > wildPokemon.base_experience) {
+      probabilityOfVictory += 25;
+    }
+
+    if (probabilityOfVictory > 50) {
       showNotification(`You caught a ${wildPokemon.name}!`);
+
       pokemonList.push(wildPokemon);
+
       reloadWildPokemon();
+
+      pokemonList[currentIndex].base_experience += 10;
     } else {
       showNotification(`${wildPokemon.name} has escaped!`);
+
       reloadWildPokemon();
+
+      pokemonList[currentIndex].base_experience += 5;
     }
   };
 
@@ -158,19 +171,19 @@ const BoardScreen = ({
         <>
           {/* Display wild Pokemon information */}
           <View className="w-full border p-2 bg-slate-200">
-            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+            <Text className="font-['proggy-clean'] font-semibold text-xl text-start">
               Name: {wildPokemon.name}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+            <Text className="font-['proggy-clean'] font-semibold text-xl text-start">
               Types: {getPokemonTypes(wildPokemon).join(", ")}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+            <Text className="font-['proggy-clean'] font-semibold text-xl text-start">
               Base Experience: {wildPokemon.base_experience}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl">
+            <Text className="font-['proggy-clean'] font-semibold text-xl">
               Weaknesses: {wildPokemonWeaknesses.join(", ")}
             </Text>
           </View>
@@ -217,19 +230,19 @@ const BoardScreen = ({
 
           {/* Display player's Pokemon information */}
           <View className="w-full border p-2 bg-slate-200">
-            <Text className="font-['proggy-clean'] font-semibold text-2xl">
+            <Text className="font-['proggy-clean'] font-semibold text-xl">
               Name: {pokemonList[currentIndex].name}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl">
+            <Text className="font-['proggy-clean'] font-semibold text-xl">
               Type: {getPokemonTypes(pokemonList[currentIndex]).join(", ")}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+            <Text className="font-['proggy-clean'] font-semibold text-xl text-start">
               Base Experience: {pokemonList[currentIndex].base_experience}
             </Text>
 
-            <Text className="font-['proggy-clean'] font-semibold text-2xl">
+            <Text className="font-['proggy-clean'] font-semibold text-xl">
               Weaknesses: {weaknessesOfMyPokemon.join(", ")}
             </Text>
           </View>
