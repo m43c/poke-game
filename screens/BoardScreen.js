@@ -95,10 +95,12 @@ const BoardScreen = ({
 
   // Function to attempt catching the wild Pokemon
   const catchPokemon = () => {
-    let probabilityOfVictory = 0;
-    const typesOfMyPokemon = getPokemonTypes(pokemonList[currentIndex]);
+    const myCurrentPokemon = pokemonList[currentIndex];
+    const typesOfMyCurrentPokemon = getPokemonTypes(myCurrentPokemon);
 
-    typesOfMyPokemon.forEach((type) => {
+    let probabilityOfVictory = 0;
+
+    typesOfMyCurrentPokemon.forEach((type) => {
       if (wildPokemonWeaknesses.includes(type)) {
         probabilityOfVictory += 50;
       }
@@ -107,6 +109,7 @@ const BoardScreen = ({
     if (probabilityOfVictory >= 50) {
       showNotification(`You caught a ${wildPokemon.name}!`);
       pokemonList.push(wildPokemon);
+      reloadWildPokemon();
     } else {
       showNotification(`${wildPokemon.name} has escaped!`);
       reloadWildPokemon();
@@ -163,6 +166,10 @@ const BoardScreen = ({
               Types: {getPokemonTypes(wildPokemon).join(", ")}
             </Text>
 
+            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+              Base Experience: {wildPokemon.base_experience}
+            </Text>
+
             <Text className="font-['proggy-clean'] font-semibold text-2xl">
               Weaknesses: {wildPokemonWeaknesses.join(", ")}
             </Text>
@@ -216,6 +223,10 @@ const BoardScreen = ({
 
             <Text className="font-['proggy-clean'] font-semibold text-2xl">
               Type: {getPokemonTypes(pokemonList[currentIndex]).join(", ")}
+            </Text>
+
+            <Text className="font-['proggy-clean'] font-semibold text-2xl text-start">
+              Base Experience: {pokemonList[currentIndex].base_experience}
             </Text>
 
             <Text className="font-['proggy-clean'] font-semibold text-2xl">
