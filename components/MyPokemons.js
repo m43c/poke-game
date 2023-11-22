@@ -18,6 +18,10 @@ const MyPokemons = () => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
 
+  const getPokemonTypes = (pokemon) => {
+    return pokemon.types ? pokemon.types.map((type) => type.type.name) : [];
+  };
+
   // Callback function for the RefreshControl to simulate refreshing
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
@@ -42,15 +46,27 @@ const MyPokemons = () => {
           keyExtractor={(item) => item.name}
           renderItem={({ item }) => (
             <View className="items-center">
-              {/* Display Pokemon name */}
-              <Text className="font-['proggy-clean'] font-semibold text-3xl text-gray-200">
-                {capitalizeWord(item.name)}
-              </Text>
-              {/* Display Pokemon image */}
-              <Image
-                source={{ uri: item.sprites.front_default }}
-                className="w-[200px] h-[200px]"
-              />
+              {/* Display the Pokémon's image */}
+              <View className="w-[250px] mb-4 p-2 space-y-1 bg-red-400">
+                <Image
+                  source={{ uri: item.sprites.front_default }}
+                  className="w-[200px] h-[120px] mx-auto"
+                />
+                {/* Display Pokémon information */}
+                <View>
+                  <Text className="font-[proggy-clean] text-xl text-gray-950">
+                    Name: {capitalizeWord(item.name)}
+                  </Text>
+
+                  <Text className="font-[proggy-clean] text-xl text-gray-950">
+                    Experience: {item.base_experience}
+                  </Text>
+
+                  <Text className="font-[proggy-clean] text-xl text-gray-950">
+                    Types: {getPokemonTypes(item).join(", ")}
+                  </Text>
+                </View>
+              </View>
             </View>
           )}
           // Add refresh control to the FlatList
