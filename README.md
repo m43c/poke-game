@@ -33,24 +33,35 @@ Additionally, it seeks to turn this work into a creative expression for programm
 - **Expo:** Expo: open-source platform built around React Native to streamline mobile development with ready-to-use components and services, shared configuration and tools. Enables writing cross-platform React Native apps.
 - **Consuming the PokeAPI:** PokéAPI is a RESTful public API that provides comprehensive information on Pokémon, moves, abilities, etc. Consuming this API allows leveraging rich existing data in the PokéGame app.
 
+
+## Screenshots
+![Home Screen](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/home-screen.png?raw=true)
+![Board Screen](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/board-screen.png?raw=true)
+![My Pokemons](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/my-pokemons.png?raw=true)
+![Pokedex](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/pokedex.png?raw=true)
+
 ## Instructions to Clone and Run the Project
 
 Below are the steps to install and run the application:
 
 1. Clone the repository to your local machine:
+
     ```bash
       git clone https://github.com/m43c/poke-game.git
     ```
 
 2. Navigate to the project directory:
+
     ```bash
       cd poke-game
     ```
 3. Install dependencies
+
     ```bash
       npm install
     ```
 4. Start the application
+
     ```bash
       npx expo start
     ```
