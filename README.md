@@ -35,10 +35,10 @@ Additionally, it seeks to turn this work into a creative expression for programm
 
 
 ## Screenshots
-![Home Screen](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/home-screen.png?raw=true)
-![Board Screen](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/board-screen.png?raw=true)
-![My Pokemons](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/my-pokemons.png?raw=true)
-![Pokedex](https://github.com/m43c/sqlite-crud/blob/main/assets/screenshots/pokedex.png?raw=true)
+![Home Screen](https://github.com/m43c/poke-game/blob/main/assets/screenshots/home-screen.png?raw=true)
+![Board Screen](https://github.com/m43c/poke-game/blob/main/assets/screenshots/board-screen.png?raw=true)
+![My Pokemons](https://github.com/m43c/poke-game/blob/main/assets/screenshots/my-pokemons.png?raw=true)
+![Pokedex](https://github.com/m43c/poke-game/blob/main/assets/screenshots/pokedex.png?raw=true)
 
 ## Instructions to Clone and Run the Project
 
